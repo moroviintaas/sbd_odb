@@ -9,6 +9,7 @@ public class Person {
 	int health;
 	int stamina;
 	int force;
+	int toxic_level;
 	
 	int strength;
 	int endurance;
@@ -17,6 +18,7 @@ public class Person {
 	int agility;
 	int personality;
 	int faith;
+	
 	
 	Boolean alive;
 	
@@ -44,6 +46,7 @@ public class Person {
 		health = 10 *endurance;
 		force = 7 * inteligence + (7 *faith);
 		stamina = (5 * endurance) + (3* strength) + (2*dexterity) + (2*agility);
+		toxic_level = 0;
 		
 	}
 	
@@ -70,6 +73,45 @@ public class Person {
 		{
 			stamina = (5 * endurance) + (3* strength) + (2*dexterity) + (2*agility);
 		}
+	}
+	void toxify(int tox)
+	{
+		toxic_level += tox;
+		if (toxic_level>=100)
+		{
+			alive = false;
+		}
+	}
+	
+	void add_item(Item it)
+	{
+		
+		equipment.add(it);
+	}
+	Boolean remove_item(Item it)
+	{
+		return equipment.remove(it);
+	}
+	void use_item(int index, Person target )
+	{
+		if (index > 0 && index < equipment.size())
+		{
+			int status = equipment.get(index).use(target);
+			if (status == -1)
+			{
+				equipment.remove(index);
+			}
+		}
+	}
+	String show_equipment()
+	{
+		
+		String result = "Gracz: " + name + " posiada:\n";
+		for (int i=0; i<equipment.size(); i++)
+		{
+			result = result + equipment.get(i).show_str() + "\n";
+		}
+		return result;
 	}
 	
 	
