@@ -33,7 +33,7 @@ public class Sbd_odb {
 		//tworzymy obiekty do bazy
 		
 		Weapon wp1 = new Weapon(0x10000001,"Przeklęta drewniana szabla",6,20,70);
-		Weapon wp2 = new Weapon(0x10000002,"Miecz zabójcy demonów skąpany w porannej tęczy (no homo)",7,40,70);
+		Weapon wp2 = new Weapon(0x10000002,"Miecz zabójcy demonów skąpany w porannej tęczy (no homo) +4",7,40,70);
 		
 		Armour arm1 = new Armour(0x20000001, "Pancerz rycerski", 5, 30,50);
 		Armour arm2 = new Armour(0x20000002, "Bechatka", 10, 5,10);
@@ -78,6 +78,11 @@ public class Sbd_odb {
 			db.store(p2);
 			
 			System.out.println("Zapytanie o graczy z imieniem zawierającym \"Robert\"");
+			System.out.println("\tgracze = db.query(new Predicate<Person>() {\n" + 
+					"				public boolean match(Person gracz) {\n" + 
+					"				return gracz.name.contains(\"Robert\");\n" + 
+					"				}\n" + 
+					"				});");
 			System.out.println("Wypisany ekwipunek");
 			
 			gracze = db.query(new Predicate<Person>() {
@@ -106,6 +111,10 @@ public class Sbd_odb {
 				});
 			System.out.println("znaleziono obiektów : "  + gracze.size());
 			System.out.println(gracze.get(0).show_equipment());
+			
+			
+			
+			
 			
 			
 		}
