@@ -1,5 +1,6 @@
 package sbd_odb;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Person {
@@ -23,6 +24,7 @@ public class Person {
 	Boolean alive;
 	
 	LinkedList<Item> equipment;
+	ArrayList<Ability> abilities;
 	
 	Person(String name)
 	{
@@ -36,6 +38,7 @@ public class Person {
 		faith = 1;
 		alive = true;
 		equipment = new LinkedList<Item>();
+		abilities = new ArrayList<Ability>();
 		restore_full();
 		
 		

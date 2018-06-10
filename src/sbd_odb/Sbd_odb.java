@@ -1,7 +1,6 @@
 package sbd_odb;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import com.db4o.Db4o;
@@ -44,9 +43,13 @@ public class Sbd_odb {
 		
 		Grenade gr1 = new Grenade(0x40000001, "Sekret Mnicha", 1, 12, 12, 20, 0, 20);
 		
+		Ability ab1 = new Ability("Bach!", 0,0,0,20,0,10); 
 		
 		Person p1 = new Person("Lord Rafael de Bogl");
 		Person p2 = new Person("przerażający Arcylich Robert");
+		
+		p2.abilities.add(ab1);
+		p2.abilities.add(ab1);
 		
 		p1.add_item(wp2);
 		p1.add_item(arm1);
@@ -58,6 +61,7 @@ public class Sbd_odb {
 		p2.add_item(gr1);
 		
 		List <Person> gracze;
+		List<Item> przedmioty;
 		
 		
 
@@ -86,8 +90,8 @@ public class Sbd_odb {
 			System.out.println("Wypisany ekwipunek");
 			
 			gracze = db.query(new Predicate<Person>() {
-				public boolean match(Person gracz) {
-				return gracz.name.contains("Robert");
+				public boolean match(Person gracz) { //początek procedury sprawdzającej czy obiekt 
+				return gracz.name.contains("Robert");//spełnia wymagania
 				}
 				});
 			System.out.println("znaleziono obiektów : "  + + gracze.size());
@@ -102,6 +106,11 @@ public class Sbd_odb {
 			db.store(po1);;
 			
 			System.out.println("\nPonownie pobieramy dane z bazy i wypisujemy ekwipunek:");
+			System.out.println("\tgracze = db.query(new Predicate<Person>() {\n" + 
+					"				public boolean match(Person gracz) {\n" + 
+					"				return gracz.name.contains(\"Robert\");\n" + 
+					"				}\n" + 
+					"				});");
 			System.out.println("Widać, że obiekt został zaktualizowany w bazie danych.\n");
 			
 			gracze = db.query(new Predicate<Person>() {
@@ -112,10 +121,26 @@ public class Sbd_odb {
 			System.out.println("znaleziono obiektów : "  + gracze.size());
 			System.out.println(gracze.get(0).show_equipment());
 			
+			System.out.println("\nChcemy znaleźć przedmioty, których zbieranie jest najbardziej opłacalne:");
+			System.out.println("-stosunek wartości do wagi jest większy niż 10:");
 			
+			System.out.println("\tprzedmioty = db.query(new Predicate<Item>() {\n" + 
+					"				public boolean match(Item przedmiot) {\n" + 
+					"				return przedmiot.worthy()>10;\n" + 
+					"				}\n" + 
+					"				});");
 			
+			przedmioty = db.query(new Predicate<Item>() {
+				public boolean match(Item przedmiot) {
+				return przedmiot.worthy()>10;
+				}
+				});
 			
-			
+			System.out.println("znaleziono obiektów : "  + przedmioty.size());
+			for (int i=0; i<przedmioty.size(); i++)
+			{
+				System.out.println(przedmioty.get(i).show_str());
+			}
 			
 		}
 		finally {

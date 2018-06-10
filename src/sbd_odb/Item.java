@@ -20,5 +20,9 @@ public abstract class Item {
 	{
 		return "Nazwa: " + name;
 	}
+	public int worthy()
+	{
+		return value/weight;
+	}
 
 }
