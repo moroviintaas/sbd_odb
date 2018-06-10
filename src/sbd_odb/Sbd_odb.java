@@ -14,7 +14,7 @@ public class Sbd_odb {
 	public static void main(String[] args) {
 		
 		//na początek czyścimy bazę danych
-		try {
+		/*try {
 			File f = new File("database");
 			f.delete();
 			
@@ -28,10 +28,10 @@ public class Sbd_odb {
 		catch (SecurityException e )
 		{
 			System.out.println("Wyjątek bezpieczeństwa: " + e);
-		}
+		}*/
 		
 		//tworzymy obiekty do bazy
-		
+		/*
 		Weapon wp1 = new Weapon(0x10000001,"Przeklęta drewniana szabla",6,20,70);
 		Weapon wp2 = new Weapon(0x10000002,"Miecz zabójcy demonów skąpany w porannej tęczy (no homo)",7,40,70);
 		
@@ -56,14 +56,15 @@ public class Sbd_odb {
 		p2.add_item(arm2);
 		p2.add_item(po1);
 		p2.add_item(gr1);
+		*/
 		
 		List <Person> gracze;
 		
 		
 
-		System.out.print(p1.show_equipment()+ "\n\n");
+		//System.out.print(p1.show_equipment()+ "\n\n");
 		
-		System.out.print(p2.show_equipment()+ "\n\n");
+		//System.out.print(p2.show_equipment()+ "\n\n");
 		
 		//Baza:
 		
@@ -71,11 +72,11 @@ public class Sbd_odb {
 		//otwieramy bazę:
 		ObjectContainer db=Db4o.openFile("database");
 		try {
-			System.out.println("\nZapisujemy obie postaci w bazie:");
-			System.out.println("\tdb.store(p1);\n\tdb.store(p2);\n");
+			//System.out.println("\nZapisujemy obie postaci w bazie:");
+			//System.out.println("\tdb.store(p1);\n\tdb.store(p2);\n");
 			
-			db.store(p1);
-			db.store(p2);
+			//db.store(p1);
+			//db.store(p2);
 			
 			System.out.println("Zapytanie o graczy z imieniem zawierającym \"Robert\"");
 			System.out.println("Wypisany ekwipunek");
@@ -87,7 +88,7 @@ public class Sbd_odb {
 				});
 			System.out.println("znaleziono obiektów : "  + + gracze.size());
 			System.out.println(gracze.get(0).show_equipment());
-			
+			/*
 			System.out.println("\nZmieniamy obiekt Bimber Fichała poza bazą:");
 			System.out.println("\tpo1.name = \"Bimber Fichała z Borcuchów\";\n");
 			System.out.println("\nZapisujemy w bazie:");
@@ -106,7 +107,8 @@ public class Sbd_odb {
 				});
 			System.out.println("znaleziono obiektów : "  + gracze.size());
 			System.out.println(gracze.get(0).show_equipment());
-			
+			*/
+			System.out.println(gracze.get(0).equipment.get(0).name2);
 			
 		}
 		finally {

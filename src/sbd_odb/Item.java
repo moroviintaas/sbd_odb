@@ -1,9 +1,10 @@
 package sbd_odb;
 
 public abstract class Item {
-	public String name;
-	int weight;
-	int value;
+	protected String name;
+	protected String name2;
+	private int weight;
+	private int value;
 	int type_id;
 	
 	
@@ -14,6 +15,7 @@ public abstract class Item {
 		this.name = name;
 		this.weight = weight;
 		this.value = value;
+		this.name2 = name + name;
 	}
 	public abstract int use(Person target);
 	public String show_str()
