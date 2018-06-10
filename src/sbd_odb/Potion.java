@@ -46,7 +46,7 @@ public class Potion extends Item {
 	@Override
 	public String show_str()
 	{
-		return "Typ: mikstura\t" + super.show_str() + "\tPrzywracane zdrowie: " + ammount_of_restored_health + "\tPrzywracana moc: " + ammount_of_restored_force + "\tPrzywracana kondycja " + ammount_of_restored_stamina + "\tZapas: "+ Integer.toString(stacks);
+		return "Typ: mikstura\t" + super.show_str() + "\tPrzywracane zdrowie: " + ammount_of_restored_health + "\tPrzywracana moc: " + ammount_of_restored_force + "\tPrzywracana kondycja: " + ammount_of_restored_stamina + "\tZapas: "+ Integer.toString(stacks);
 	}
 
 }
