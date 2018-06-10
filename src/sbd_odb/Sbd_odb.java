@@ -1,8 +1,31 @@
 package sbd_odb;
 
+import java.io.File;
+import java.io.IOException;
+
+
 public class Sbd_odb {
 
 	public static void main(String[] args) {
+		
+		//na początek czyścimy bazę danych
+		try {
+			File f = new File("database");
+			f.delete();
+			
+		    
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("Wyjątek: " + e);
+			
+		}
+		catch (SecurityException e )
+		{
+			System.out.println("Wyjątek bezpieczeństwa: " + e);
+		}
+		
+		//tworzymy obiekty do bazy
 		
 		Weapon wp1 = new Weapon(0x10000001,"Przeklęta drewniana szabla",6,20,70);
 		Weapon wp2 = new Weapon(0x10000002,"Miecz zabójcy demonów skąpany w porannej tęczy (no homo)",7,40,70);
@@ -32,6 +55,10 @@ public class Sbd_odb {
 		System.out.print(p1.show_equipment()+ "\n\n");
 		
 		System.out.print(p2.show_equipment()+ "\n\n");
+		
+		//otwieramy bazę:
+		
+		
 		
 
 	}
